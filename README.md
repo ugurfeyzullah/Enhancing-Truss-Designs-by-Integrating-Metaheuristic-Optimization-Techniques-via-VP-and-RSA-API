@@ -10,6 +10,10 @@ This project was conceptualized and performed during the research stay at the re
 
 Conceptualization, R.M. and F.Y.; methodology, R.M., and F.Y.; software, F.Y.; validation, F.Y.; formal analysis, F.Y.; investigation, R.M. and F.Y.; resources, R.M.; data curation, F.Y.; writing—original draft preparation, F.Y.; writing—review and editing, R.M.; visualization, F.Y.; supervision, R.M.; project administration, R.M.; funding acquisition, R.M.
 
+
+https://github.com/ugurfeyzullah/Enhancing-Truss-Designs-by-Integrating-Metaheuristic-Optimization-Techniques-via-VP-and-RSA-API/assets/149387821/a43f1b3c-0d15-4f2a-9142-f82d8777e4aa
+
+
 ## Motivation
 
 The construction industry faces the challenge of meeting the demands of contemporary societies for efficient and optimized structures. Traditional design workflows often lead to compromises and inefficiencies. This project addresses these challenges by proposing a seamless integration of structural optimization (SO) into the BIM environment, facilitating better collaboration between architects and engineers and promoting the use of sustainable materials and design practices.
@@ -21,6 +25,13 @@ The construction industry faces the challenge of meeting the demands of contempo
 - **Finite Element Analysis**: Uses Robot Structural Analysis (RSA) API for accurate stress, weight, and displacement calculations.
 - **Visual Programming**: Leverages the power of Dynamo to facilitate the parametric modeling and optimization process.
 - **Constraint Handling**: Incorporates different types of CHTs to show efficiency of provided codes.
+
+
+
+https://github.com/ugurfeyzullah/Enhancing-Truss-Designs-by-Integrating-Metaheuristic-Optimization-Techniques-via-VP-and-RSA-API/assets/149387821/c2c92639-3493-4cd0-8255-5bf00be0ec17
+
+
+
 
 ## Getting Started
 
