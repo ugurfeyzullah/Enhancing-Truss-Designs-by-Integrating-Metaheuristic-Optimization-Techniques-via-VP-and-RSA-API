@@ -1,0 +1,524 @@
+{
+  "Uuid": "edc527d5-3bf6-4bff-b1fd-114156a0aceb",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "API",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Point": {
+        "Key": "Autodesk.DesignScript.Geometry.Point",
+        "Value": "ProtoGeometry.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "a9dac4b450c54b65a79b5230fedeffd4",
+      "Inputs": [
+        {
+          "Id": "0e03c13947ba4246a9450254cbbcb959",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d5b0c46f8d7b4206b1305515d0dafe99",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[\"HSRO 3.5x.188\",\n\"HSRO 3.5x.203\",\n\"HSRO 3.5x.313\",\n\"HSRO 4x.25\",\n\"HSRO 4x.237\",\n\"HSRO 4x.313\",\n\"HSRO 4.5x.125\",\n\"HSRO 4.5x.237\",\n\"HSRO 4.5x.337\",\n\"HSRO 4.5x.375\",\n\"HSRO 5x.25\",\n\"HSRO 5x.258\",\n\"HSRO 5x.312\",\n\"HSRO 5x.375\",\n\"HSRO 5.563x.134\",\n\"HSRO 5.563x.375\",\n\"HSRO 6x.25\",\n\"HSRO 6x.28\",\n\"HSRO 6x.188\",\n\"HSRO 6.625x.125\",\n\"HSRO 6.625x.188\",\n\"HSRO 6.875x.188\",\n\"HSRO 6.875x.375\",\n\"HSRO 7x.188\",\n\"HSRO 7.5x.188\",\n\"HSRO 7.625x.375\",\n\"HSRO 9.625x.5\",\n\"HSRO 9.625x.188\",\n\"HSRO 10x.5\",\n\"HSRO 10x.625\",\n\"HSRO 12.75x.5\",\n\"HSRO 14x.375\",\n\"HSRO 16x.25\",\n\"HSRO 16x.312\",\n\"HSRO 16x.438\",\n\"HSRO 16x.5\",\n\"HSRO 16x.625\",\n\"HSRO 18x.5\",\n\"HSRO 18x.375\",\n\"HSRO 20x.375\",\n\"HSRO 20x.5\"];",
+      "Id": "068615aa298c4f3b838c8b7b3510ac84",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d50a1d59894c48888710aba209f36a6e",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr  # Required for Python for .NET\r\nimport sys\r\nimport random\r\nimport sys\r\nfrom io import StringIO\r\nsys.stdout = StringIO()\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\nimport time\r\nstart_time = time.time()\r\n# INPUTS\r\n\r\nsections=IN[0]\r\n\r\n\r\n\r\n# Load the RSA API library\r\nclr.AddReference(r'D:\\Programs\\Autodesk\\Revit2024\\Robot Structural Analysis Professional 2024\\Exe\\interop.RobotOM.dll')\r\n\r\n# Import the RSA API\r\nfrom RobotOM import *\r\nfrom System import Object\r\n\r\nRobApp= RobotApplicationClass()\r\n\r\n\r\n# Initialize the Robot application\r\nRobApp.Project.Structure.Nodes.Create(1,0,0,0)\r\nRobApp.Project.Structure.Nodes.Create(3,9.144,0,0)\r\nRobApp.Project.Structure.Nodes.Create(2,0,0,9.144)\r\nRobApp.Project.Structure.Nodes.Create(4,9.14,0,9.144)\r\nRobApp.Project.Structure.Nodes.Create(5,18.288,0,9.144)\r\nRobApp.Project.Structure.Nodes.Create(6,18.288,0,0)\r\n\r\nRobApp.Project.Structure.Bars.Create(1,1,3)\r\nRobApp.Project.Structure.Bars.Create(2,3,4)\r\nRobApp.Project.Structure.Bars.Create(3,4,5)\r\nRobApp.Project.Structure.Bars.Create(4,2,4)\r\n\r\nRobApp.Project.Structure.Bars.Create(5,3,6)\r\nRobApp.Project.Structure.Bars.Create(6,5,6)\r\nRobApp.Project.Structure.Bars.Create(7,1,4)\r\nRobApp.Project.Structure.Bars.Create(8,2,3)\r\nRobApp.Project.Structure.Bars.Create(9,4,6)\r\nRobApp.Project.Structure.Bars.Create(10,3,5)\r\n\t\r\n# Retrieve a node and set its label\r\n# with the 'SetLabel' method.\r\nset_node1 = RobApp.Project.Structure.Nodes.Get(1)\r\nset_node2 = RobApp.Project.Structure.Nodes.Get(2)\r\n\r\n\r\n\r\n# Cast the COM object to the specific interface type\r\nsupport1= IRobotNode(set_node1)\r\nsupport2= IRobotNode(set_node2)\r\n\r\n\r\n# Now you can call the 'SetLabel' method\r\nsupport1.SetLabel(IRobotLabelType.I_LT_SUPPORT, \"Pinned\")\r\nsupport2.SetLabel(IRobotLabelType.I_LT_SUPPORT, \"Pinned\")\r\n\r\n\r\n# Create a new simple case\r\ncase_number = RobApp.Project.Structure.Cases.FreeNumber\r\ncas = RobApp.Project.Structure.Cases.CreateSimple(case_number,\"Case_1\", IRobotCaseNature.I_CN_PERMANENT , IRobotCaseAnalizeType.I_CAT_STATIC_LINEAR)\r\n\r\ncas2 = RobApp.Project.Structure.Cases.CreateSimple(case_number+1,\"Case_2\", IRobotCaseNature.I_CN_PERMANENT , IRobotCaseAnalizeType.I_CAT_STATIC_LINEAR)\r\n\r\n\r\n\r\ncase1=cas.Records.Create(IRobotLoadRecordType.I_LRT_NODE_FORCE)\r\ncase2=cas2.Records.Create(IRobotLoadRecordType.I_LRT_DEAD)\r\n\r\n\r\ncase11=RobotLoadRecord(case1)\r\ncase11.SetValue(IRobotNodeForceRecordValues.I_NFRV_FZ , -444822.16)\r\n\r\nselection = case11.get_Objects()\r\n\r\na= IRobotSelection(selection)\r\na.FromText(\"3 6\") \r\n\r\ncase22=RobotLoadRecord(case2)\r\ncase22.SetValue(IRobotDeadRecordValues.I_DRV_Z,-1)\r\nselection2 = case22.get_Objects()\r\nb= IRobotSelection(selection2)\r\nb.FromText(\"1to10\") \r\n# List of section names\r\n\r\n\r\n# Defining Material\r\n\r\n# Define the material name\r\nmaterial_name = \"10barsteel\"\r\n\r\n\r\na=RobApp.Project.Structure.Labels\r\na=IRobotLabelServer(a)\r\n\r\na=a.Create(IRobotLabelType.I_LT_MATERIAL, material_name)\r\n\r\nmaterial = IRobotLabel(a).Data\r\n\r\nmaterial=IRobotMaterialData(material)\r\n\r\n\r\n# Set the material properties\r\nmaterial.Type = IRobotMaterialType.I_MT_STEEL\r\nmaterial.E = 68947572932  # Young's modulus in Pascals\r\nmaterial.NU = 0.33    # Poisson's ratio\r\nmaterial.RO = 27679       # Unit weight in kg/m^3\r\nmaterial.Kirchoff = material.E / (2 * (1 + material.NU))\r\n\r\ns=RobApp.Project.Structure.Labels.Store(a)\r\n\r\n\r\n\r\ndef myfunction(x):\r\n\r\n    indexes = x\r\n    section_names = [sections[i] for i in indexes]\r\n    \r\n    \r\n    # Assign each section from the list to the corresponding bar\r\n    for i, section_name in enumerate(section_names, start=1):\r\n        # Retrieve the bar using its index\r\n        bar = RobApp.Project.Structure.Bars.Get(i)\r\n        \r\n        # Cast the bar to the IRobotBar type\r\n        bar = IRobotBar(bar)\r\n        \r\n        # Set the section label to the bar\r\n        bar.SetLabel(IRobotLabelType.I_LT_BAR_SECTION, section_name)\r\n        bar.SetLabel(IRobotLabelType.I_LT_MATERIAL ,\"10barsteel\"  )\r\n        bar.SetLabel(IRobotLabelType.I_LT_BAR_RELEASE ,\"Pinned-Pinned\"  )\r\n    \r\n    \r\n    a=RobApp.Project.get_CalcEngine()\r\n    b=IRobotCalcEngine(a)\r\n    b.Calculate()\r\n    \r\n    \r\n    \r\n    #RESULTS\r\n    serv= RobApp.Project.Structure.Results.Nodes.Displacements\r\n    serb= RobApp.Project.Structure.Results.Bars.Stresses\r\n    serr = RobApp.Project.Structure.Results.Nodes.Reactions\r\n    \r\n    \r\n    \r\n    reactions=[]\r\n    for i in range(1, 3):  \r\n        data=serr.Value(i,2)\r\n        \r\n        b=IRobotReactionData(data)\r\n        res_uz = b.FZ\r\n        reactions.append(res_uz)\r\n    \r\n    displacements=[]\r\n    for i in range(1, 7):  \r\n        data=serv.Value(i,1)\r\n        \r\n        b=IRobotDisplacementData(data)\r\n        res_uz = b.UZ\r\n        displacements.append(res_uz)\r\n        \r\n    \r\n    stresses=[]\r\n    for i in range(1, 11):  \r\n        data=serb.Value(i,1,1)\r\n        \r\n        b=IRobotBarStressData(data)\r\n        FXSX  = b.FXSX \r\n        stresses.append(FXSX)\r\n    \r\n    #Convert to mm\r\n    displacements = [num *1000 for num in displacements]\r\n    \r\n    #Convert to N/mm²\r\n    stresses = [num / 1000000 for num in stresses]\r\n    \r\n    #Convert to kg\r\n    reactions = sum(reactions)/9.81\r\n    \r\n    \r\n    Save=RobApp.Kernel\r\n    b=IRobotKernel(Save)\r\n    b.ProjectSaveAs(r'C:\\Users\\ugury\\OneDrive\\Masaüstü\\New folder\\1.rtd')\r\n    \r\n    \r\n    #WEIGHT SCORE EVALUATION\r\n    #Actual stress in the bar\r\n    stress=stresses\r\n    Displacement=displacements\r\n    weight=reactions\r\n    \r\n    #Sets the scoring system for the stress ratios\r\n    TensAllowableStress=172.37\r\n    CompAllowableStress=172.37\r\n    AllowableDisplacement=50.8\r\n    \r\n    violation_coef=10\r\n    \r\n    tensstress=[]\r\n    compstress=[]\r\n    compindex=[]\r\n    for index, value in enumerate(stress):\r\n        if value < 0:\r\n            compstress.append((value))\r\n            compindex.append((index))\r\n        else: \r\n            tensstress.append((value))    \r\n    \r\n    compstress=[abs(value) for value in compstress]\r\n    \r\n    Displacement=[abs(value) for value in Displacement]\r\n    \r\n    \r\n    stress_ratio=[]\r\n    violation = 0  # Initialize violation as a float or integer\r\n    \r\n    for i in tensstress:\r\n        ratio = i / TensAllowableStress\r\n        stress_ratio.append(ratio)\r\n    \r\n    \r\n    for i in compstress:\r\n        ratio = i / CompAllowableStress\r\n        stress_ratio.append(ratio)\r\n    \r\n    \r\n    for d in Displacement:\r\n        ratio = d / AllowableDisplacement\r\n        stress_ratio.append(ratio)\r\n    \r\n    for r in stress_ratio:\r\n        if r - 1 > 0:\r\n            violation += r - 1\r\n    \r\n    weight_score=weight*(1+(violation*violation_coef))\r\n\r\n    return weight_score\r\n\r\n\r\n\r\nimport numpy as np\r\nfrom pymoo.algorithms.soo.nonconvex.ga import GA\r\nfrom pymoo.core.problem import Problem\r\nfrom pymoo.operators.crossover.sbx import SBX\r\nfrom pymoo.operators.mutation.pm import PM\r\nfrom pymoo.operators.repair.rounding import RoundingRepair\r\nfrom pymoo.operators.sampling.rnd import IntegerRandomSampling\r\nfrom pymoo.optimize import minimize\r\nimport logging\r\n\r\n\r\n\r\nclass Problem(Problem):\r\n    def __init__(self):\r\n        super().__init__(n_var=10, \r\n                         n_obj=1,\r\n                         xl=np.array([0]*10),  \r\n                         xu=np.array([40]*10),\r\n                         vtype=int)\r\n            \r\n\r\n    def _evaluate(self, x, out, *args, **kwargs):\r\n        x=x.tolist() \r\n        weight_score= [myfunction(sublist) for sublist in x]  \r\n        resutl=np.array(weight_score)\r\n        out[\"F\"] = np.array(weight_score)\r\n\r\n\r\nproblem = Problem()\r\n\r\nalgorithm = GA(pop_size=20,\r\n               sampling=IntegerRandomSampling(),\r\n               crossover=SBX(prob=1.0, eta=3.0, vtype=float,repair=RoundingRepair()),\r\n               mutation=PM(prob=1.0, eta=3.0, vtype=float,repair=RoundingRepair()),\r\n               eliminate_duplicates=True)\r\n\r\nres = minimize(problem, algorithm,('n_gen', 20),verbose=True)\r\n\r\nprint(\"Best solution found:\")\r\nprint(\"Variables:\", res.X)\r\nprint(\"Objectives:\", res.F)\r\nprint(\"Constraints:\", res.CV)\r\nprint(\"Optimization result:\", res.algorithm.result)\r\nprint(\"Execution time: {:.2f} seconds\".format(time.time() - start_time))\r\n\r\n\r\n\r\n\r\n\r\nsys.stdout.seek(0)\r\nOUT = sys.stdout.read()\r\n\r\n\r\n\r\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "5b1958cea8f3481d9ad990d2625b9f2f",
+      "Inputs": [
+        {
+          "Id": "ba123edea50b464a971174dd0172e22e",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "021f229979d24cb2a92ebe625973c374",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr  # Required for Python for .NET\r\nimport sys\r\nimport random\r\nimport sys\r\nfrom io import StringIO\r\nsys.stdout = StringIO()\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# INPUTS\r\n\r\nsections=IN[0]\r\n\r\n\r\n\r\n# Load the RSA API library\r\nclr.AddReference(r'D:\\Programs\\Autodesk\\Revit2024\\Robot Structural Analysis Professional 2024\\Exe\\interop.RobotOM.dll')\r\n\r\n# Import the RSA API\r\nfrom RobotOM import *\r\nfrom System import Object\r\n\r\nRobApp= RobotApplicationClass()\r\n\r\n\r\n# Initialize the Robot application\r\nRobApp.Project.Structure.Nodes.Create(1,0,0,0)\r\nRobApp.Project.Structure.Nodes.Create(3,9.144,0,0)\r\nRobApp.Project.Structure.Nodes.Create(2,0,0,9.144)\r\nRobApp.Project.Structure.Nodes.Create(4,9.14,0,9.144)\r\nRobApp.Project.Structure.Nodes.Create(5,18.288,0,9.144)\r\nRobApp.Project.Structure.Nodes.Create(6,18.288,0,0)\r\n\r\nRobApp.Project.Structure.Bars.Create(1,1,3)\r\nRobApp.Project.Structure.Bars.Create(2,3,4)\r\nRobApp.Project.Structure.Bars.Create(3,4,5)\r\nRobApp.Project.Structure.Bars.Create(4,2,4)\r\n\r\nRobApp.Project.Structure.Bars.Create(5,3,6)\r\nRobApp.Project.Structure.Bars.Create(6,5,6)\r\nRobApp.Project.Structure.Bars.Create(7,1,4)\r\nRobApp.Project.Structure.Bars.Create(8,2,3)\r\nRobApp.Project.Structure.Bars.Create(9,4,6)\r\nRobApp.Project.Structure.Bars.Create(10,3,5)\r\n\t\r\n# Retrieve a node and set its label\r\n# with the 'SetLabel' method.\r\nset_node1 = RobApp.Project.Structure.Nodes.Get(1)\r\nset_node2 = RobApp.Project.Structure.Nodes.Get(2)\r\n\r\n\r\n\r\n# Cast the COM object to the specific interface type\r\nsupport1= IRobotNode(set_node1)\r\nsupport2= IRobotNode(set_node2)\r\n\r\n\r\n# Now you can call the 'SetLabel' method\r\nsupport1.SetLabel(IRobotLabelType.I_LT_SUPPORT, \"Pinned\")\r\nsupport2.SetLabel(IRobotLabelType.I_LT_SUPPORT, \"Pinned\")\r\n\r\n\r\n# Create a new simple case\r\ncase_number = RobApp.Project.Structure.Cases.FreeNumber\r\ncas = RobApp.Project.Structure.Cases.CreateSimple(case_number,\"Case_1\", IRobotCaseNature.I_CN_PERMANENT , IRobotCaseAnalizeType.I_CAT_STATIC_LINEAR)\r\n\r\ncas2 = RobApp.Project.Structure.Cases.CreateSimple(case_number+1,\"Case_2\", IRobotCaseNature.I_CN_PERMANENT , IRobotCaseAnalizeType.I_CAT_STATIC_LINEAR)\r\n\r\n\r\n\r\ncase1=cas.Records.Create(IRobotLoadRecordType.I_LRT_NODE_FORCE)\r\ncase2=cas2.Records.Create(IRobotLoadRecordType.I_LRT_DEAD)\r\n\r\n\r\ncase11=RobotLoadRecord(case1)\r\ncase11.SetValue(IRobotNodeForceRecordValues.I_NFRV_FZ , -444822.16)\r\n\r\nselection = case11.get_Objects()\r\n\r\na= IRobotSelection(selection)\r\na.FromText(\"3 6\") \r\n\r\ncase22=RobotLoadRecord(case2)\r\ncase22.SetValue(IRobotDeadRecordValues.I_DRV_Z,-1)\r\nselection2 = case22.get_Objects()\r\nb= IRobotSelection(selection2)\r\nb.FromText(\"1to10\") \r\n# List of section names\r\n\r\n\r\n# Defining Material\r\n\r\n# Define the material name\r\nmaterial_name = \"10barsteel\"\r\n\r\n\r\na=RobApp.Project.Structure.Labels\r\na=IRobotLabelServer(a)\r\n\r\na=a.Create(IRobotLabelType.I_LT_MATERIAL, material_name)\r\n\r\nmaterial = IRobotLabel(a).Data\r\n\r\nmaterial=IRobotMaterialData(material)\r\n\r\n\r\n# Set the material properties\r\nmaterial.Type = IRobotMaterialType.I_MT_STEEL\r\nmaterial.E = 68947572932  # Young's modulus in Pascals\r\nmaterial.NU = 0.33    # Poisson's ratio\r\nmaterial.RO = 27679       # Unit weight in kg/m^3\r\nmaterial.Kirchoff = material.E / (2 * (1 + material.NU))\r\n\r\ns=RobApp.Project.Structure.Labels.Store(a)\r\n\r\n\r\n\r\ndef myfunction(x):\r\n\r\n    indexes = x\r\n    section_names = [sections[i] for i in indexes]\r\n    \r\n    \r\n    # Assign each section from the list to the corresponding bar\r\n    for i, section_name in enumerate(section_names, start=1):\r\n        # Retrieve the bar using its index\r\n        bar = RobApp.Project.Structure.Bars.Get(i)\r\n        \r\n        # Cast the bar to the IRobotBar type\r\n        bar = IRobotBar(bar)\r\n        \r\n        # Set the section label to the bar\r\n        bar.SetLabel(IRobotLabelType.I_LT_BAR_SECTION, section_name)\r\n        bar.SetLabel(IRobotLabelType.I_LT_MATERIAL ,\"10barsteel\"  )\r\n        bar.SetLabel(IRobotLabelType.I_LT_BAR_RELEASE ,\"Pinned-Pinned\"  )\r\n    \r\n    \r\n    a=RobApp.Project.get_CalcEngine()\r\n    b=IRobotCalcEngine(a)\r\n    b.Calculate()\r\n    \r\n    \r\n    \r\n    #RESULTS\r\n    serv= RobApp.Project.Structure.Results.Nodes.Displacements\r\n    serb= RobApp.Project.Structure.Results.Bars.Stresses\r\n    serr = RobApp.Project.Structure.Results.Nodes.Reactions\r\n    \r\n    \r\n    \r\n    reactions=[]\r\n    for i in range(1, 3):  \r\n        data=serr.Value(i,2)\r\n        \r\n        b=IRobotReactionData(data)\r\n        res_uz = b.FZ\r\n        reactions.append(res_uz)\r\n    \r\n    displacements=[]\r\n    for i in range(1, 7):  \r\n        data=serv.Value(i,1)\r\n        \r\n        b=IRobotDisplacementData(data)\r\n        res_uz = b.UZ\r\n        displacements.append(res_uz)\r\n        \r\n    \r\n    stresses=[]\r\n    for i in range(1, 11):  \r\n        data=serb.Value(i,1,1)\r\n        \r\n        b=IRobotBarStressData(data)\r\n        FXSX  = b.FXSX \r\n        stresses.append(FXSX)\r\n    \r\n    #Convert to mm\r\n    displacements = [num *1000 for num in displacements]\r\n    \r\n    #Convert to N/mm²\r\n    stresses = [num / 1000000 for num in stresses]\r\n    \r\n    #Convert to kg\r\n    reactions = sum(reactions)/9.81\r\n    \r\n    \r\n    Save=RobApp.Kernel\r\n    b=IRobotKernel(Save)\r\n    b.ProjectSaveAs(r'C:\\Users\\ugury\\OneDrive\\Masaüstü\\New folder\\1.rtd')\r\n    \r\n    \r\n    #WEIGHT SCORE EVALUATION\r\n    #Actual stress in the bar\r\n    stress=stresses\r\n    Displacement=displacements\r\n    weight=reactions\r\n    \r\n    #Sets the scoring system for the stress ratios\r\n    TensAllowableStress=172.37\r\n    CompAllowableStress=172.37\r\n    AllowableDisplacement=50.8\r\n    \r\n    violation_coef=10\r\n    \r\n    tensstress=[]\r\n    compstress=[]\r\n    compindex=[]\r\n    for index, value in enumerate(stress):\r\n        if value < 0:\r\n            compstress.append((value))\r\n            compindex.append((index))\r\n        else: \r\n            tensstress.append((value))    \r\n    \r\n    compstress=[abs(value) for value in compstress]\r\n    \r\n    Displacement=[abs(value) for value in Displacement]\r\n    \r\n    \r\n    stress_ratio=[]\r\n    violation = 0  # Initialize violation as a float or integer\r\n    \r\n    for i in tensstress:\r\n        ratio = i / TensAllowableStress\r\n        stress_ratio.append(ratio)\r\n    \r\n    \r\n    for i in compstress:\r\n        ratio = i / CompAllowableStress\r\n        stress_ratio.append(ratio)\r\n    \r\n    \r\n    for d in Displacement:\r\n        ratio = d / AllowableDisplacement\r\n        stress_ratio.append(ratio)\r\n    \r\n    for r in stress_ratio:\r\n        if r - 1 > 0:\r\n            violation += r - 1\r\n    \r\n    weight_score=weight*(1+(violation*violation_coef))\r\n\r\n    return weight_score\r\n\r\nimport numpy as np\r\n\r\n\r\n\r\nx=[40,  0, 14, 36, 29, 24, 29, 38, 38, 14]\r\n\r\nx= [round(element) for element in x] \r\nweight_score= myfunction(x)  \r\nresutl=np.array(weight_score)\r\nprint(resutl)\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nsys.stdout.seek(0)\r\nOUT = sys.stdout.read()\r\n\r\n\r\n\r\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "6ab537603b704461a60c38c5be9e3a3b",
+      "Inputs": [
+        {
+          "Id": "4fd27d9fd384481d8b00f1e529e9adcd",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5a46dda2ffc741c58279eb9c79fc9869",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr  # Required for Python for .NET\r\nimport sys\r\nimport random\r\nimport sys\r\nfrom io import StringIO\r\nsys.stdout = StringIO()\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\nimport time\r\nstart_time = time.time()\r\n# INPUTS\r\n\r\nsections=IN[0]\r\n\r\n\r\n\r\n# Load the RSA API library\r\nclr.AddReference(r'D:\\Programs\\Autodesk\\Revit2024\\Robot Structural Analysis Professional 2024\\Exe\\interop.RobotOM.dll')\r\n\r\n# Import the RSA API\r\nfrom RobotOM import *\r\nfrom System import Object\r\n\r\nRobApp= RobotApplicationClass()\r\n\r\n\r\n# Initialize the Robot application\r\nRobApp.Project.Structure.Nodes.Create(1,0,0,0)\r\nRobApp.Project.Structure.Nodes.Create(3,9.144,0,0)\r\nRobApp.Project.Structure.Nodes.Create(2,0,0,9.144)\r\nRobApp.Project.Structure.Nodes.Create(4,9.14,0,9.144)\r\nRobApp.Project.Structure.Nodes.Create(5,18.288,0,9.144)\r\nRobApp.Project.Structure.Nodes.Create(6,18.288,0,0)\r\n\r\nRobApp.Project.Structure.Bars.Create(1,1,3)\r\nRobApp.Project.Structure.Bars.Create(2,3,4)\r\nRobApp.Project.Structure.Bars.Create(3,4,5)\r\nRobApp.Project.Structure.Bars.Create(4,2,4)\r\n\r\nRobApp.Project.Structure.Bars.Create(5,3,6)\r\nRobApp.Project.Structure.Bars.Create(6,5,6)\r\nRobApp.Project.Structure.Bars.Create(7,1,4)\r\nRobApp.Project.Structure.Bars.Create(8,2,3)\r\nRobApp.Project.Structure.Bars.Create(9,4,6)\r\nRobApp.Project.Structure.Bars.Create(10,3,5)\r\n\t\r\n# Retrieve a node and set its label\r\n# with the 'SetLabel' method.\r\nset_node1 = RobApp.Project.Structure.Nodes.Get(1)\r\nset_node2 = RobApp.Project.Structure.Nodes.Get(2)\r\n\r\n\r\n\r\n# Cast the COM object to the specific interface type\r\nsupport1= IRobotNode(set_node1)\r\nsupport2= IRobotNode(set_node2)\r\n\r\n\r\n# Now you can call the 'SetLabel' method\r\nsupport1.SetLabel(IRobotLabelType.I_LT_SUPPORT, \"Pinned\")\r\nsupport2.SetLabel(IRobotLabelType.I_LT_SUPPORT, \"Pinned\")\r\n\r\n\r\n# Create a new simple case\r\ncase_number = RobApp.Project.Structure.Cases.FreeNumber\r\ncas = RobApp.Project.Structure.Cases.CreateSimple(case_number,\"Case_1\", IRobotCaseNature.I_CN_PERMANENT , IRobotCaseAnalizeType.I_CAT_STATIC_LINEAR)\r\n\r\ncas2 = RobApp.Project.Structure.Cases.CreateSimple(case_number+1,\"Case_2\", IRobotCaseNature.I_CN_PERMANENT , IRobotCaseAnalizeType.I_CAT_STATIC_LINEAR)\r\n\r\n\r\n\r\ncase1=cas.Records.Create(IRobotLoadRecordType.I_LRT_NODE_FORCE)\r\ncase2=cas2.Records.Create(IRobotLoadRecordType.I_LRT_DEAD)\r\n\r\n\r\ncase11=RobotLoadRecord(case1)\r\ncase11.SetValue(IRobotNodeForceRecordValues.I_NFRV_FZ , -444822.16)\r\n\r\nselection = case11.get_Objects()\r\n\r\na= IRobotSelection(selection)\r\na.FromText(\"3 6\") \r\n\r\ncase22=RobotLoadRecord(case2)\r\ncase22.SetValue(IRobotDeadRecordValues.I_DRV_Z,-1)\r\nselection2 = case22.get_Objects()\r\nb= IRobotSelection(selection2)\r\nb.FromText(\"1to10\") \r\n# List of section names\r\n\r\n\r\n# Defining Material\r\n\r\n# Define the material name\r\nmaterial_name = \"10barsteel\"\r\n\r\n\r\na=RobApp.Project.Structure.Labels\r\na=IRobotLabelServer(a)\r\n\r\na=a.Create(IRobotLabelType.I_LT_MATERIAL, material_name)\r\n\r\nmaterial = IRobotLabel(a).Data\r\n\r\nmaterial=IRobotMaterialData(material)\r\n\r\n\r\n# Set the material properties\r\nmaterial.Type = IRobotMaterialType.I_MT_STEEL\r\nmaterial.E = 68947572932  # Young's modulus in Pascals\r\nmaterial.NU = 0.33    # Poisson's ratio\r\nmaterial.RO = 27679       # Unit weight in kg/m^3\r\nmaterial.Kirchoff = material.E / (2 * (1 + material.NU))\r\n\r\ns=RobApp.Project.Structure.Labels.Store(a)\r\n\r\n\r\n\r\ndef myfunction(x):\r\n\r\n    indexes = x\r\n    section_names = [sections[i] for i in indexes]\r\n    \r\n    \r\n    # Assign each section from the list to the corresponding bar\r\n    for i, section_name in enumerate(section_names, start=1):\r\n        # Retrieve the bar using its index\r\n        bar = RobApp.Project.Structure.Bars.Get(i)\r\n        \r\n        # Cast the bar to the IRobotBar type\r\n        bar = IRobotBar(bar)\r\n        \r\n        # Set the section label to the bar\r\n        bar.SetLabel(IRobotLabelType.I_LT_BAR_SECTION, section_name)\r\n        bar.SetLabel(IRobotLabelType.I_LT_MATERIAL ,\"10barsteel\"  )\r\n        bar.SetLabel(IRobotLabelType.I_LT_BAR_RELEASE ,\"Pinned-Pinned\"  )\r\n    \r\n    \r\n    a=RobApp.Project.get_CalcEngine()\r\n    b=IRobotCalcEngine(a)\r\n    b.Calculate()\r\n    \r\n    \r\n    \r\n    #RESULTS\r\n    serv= RobApp.Project.Structure.Results.Nodes.Displacements\r\n    serb= RobApp.Project.Structure.Results.Bars.Stresses\r\n    serr = RobApp.Project.Structure.Results.Nodes.Reactions\r\n    \r\n    \r\n    \r\n    reactions=[]\r\n    for i in range(1, 3):  \r\n        data=serr.Value(i,2)\r\n        \r\n        b=IRobotReactionData(data)\r\n        res_uz = b.FZ\r\n        reactions.append(res_uz)\r\n    \r\n    displacements=[]\r\n    for i in range(1, 7):  \r\n        data=serv.Value(i,1)\r\n        \r\n        b=IRobotDisplacementData(data)\r\n        res_uz = b.UZ\r\n        displacements.append(res_uz)\r\n        \r\n    \r\n    stresses=[]\r\n    for i in range(1, 11):  \r\n        data=serb.Value(i,1,1)\r\n        \r\n        b=IRobotBarStressData(data)\r\n        FXSX  = b.FXSX \r\n        stresses.append(FXSX)\r\n    \r\n    #Convert to mm\r\n    displacements = [num *1000 for num in displacements]\r\n    \r\n    #Convert to N/mm²\r\n    stresses = [num / 1000000 for num in stresses]\r\n    \r\n    #Convert to kg\r\n    reactions = sum(reactions)/9.81\r\n    \r\n    \r\n    Save=RobApp.Kernel\r\n    b=IRobotKernel(Save)\r\n    b.ProjectSaveAs(r'C:\\Users\\ugury\\OneDrive\\Masaüstü\\New folder\\1.rtd')\r\n    \r\n    \r\n    #WEIGHT SCORE EVALUATION\r\n    #Actual stress in the bar\r\n    stress=stresses\r\n    Displacement=displacements\r\n    weight=reactions\r\n    \r\n    #Sets the scoring system for the stress ratios\r\n    TensAllowableStress=172.37\r\n    CompAllowableStress=172.37\r\n    AllowableDisplacement=50.8\r\n    \r\n    violation_coef=10\r\n    \r\n    tensstress=[]\r\n    compstress=[]\r\n    compindex=[]\r\n    for index, value in enumerate(stress):\r\n        if value < 0:\r\n            compstress.append((value))\r\n            compindex.append((index))\r\n        else: \r\n            tensstress.append((value))    \r\n    \r\n    compstress=[abs(value) for value in compstress]\r\n    \r\n    Displacement=[abs(value) for value in Displacement]\r\n    \r\n    \r\n    stress_ratio=[]\r\n    violation = 0  # Initialize violation as a float or integer\r\n    \r\n    for i in tensstress:\r\n        ratio = i / TensAllowableStress\r\n        stress_ratio.append(ratio)\r\n    \r\n    \r\n    for i in compstress:\r\n        ratio = i / CompAllowableStress\r\n        stress_ratio.append(ratio)\r\n    \r\n    \r\n    for d in Displacement:\r\n        ratio = d / AllowableDisplacement\r\n        stress_ratio.append(ratio)\r\n    \r\n    for r in stress_ratio:\r\n        if r - 1 > 0:\r\n            violation += r - 1\r\n    \r\n    weight_score=weight*(1+(violation*violation_coef))\r\n\r\n    return weight_score\r\n\r\n\r\nimport numpy as np\r\nfrom pymoo.algorithms.soo.nonconvex.ga import GA\r\nfrom pymoo.algorithms.moo.nsga2 import NSGA2\r\nfrom pymoo.core.problem import Problem\r\nfrom pymoo.core.callback import Callback\r\nfrom pymoo.optimize import minimize\r\nimport logging\r\nfrom pymoo.algorithms.soo.nonconvex.pso import PSO\r\nfrom pymoo.operators.repair.rounding import RoundingRepair\r\n\r\n\r\nclass Problem(Problem):\r\n    def __init__(self):\r\n        super().__init__(n_var=10, \r\n                         n_obj=1,\r\n                         xl=np.array([0]*10),  \r\n                         xu=np.array([40]*10),\r\n                         vtype=int)\r\n            \r\n\r\n    def _evaluate(self, x, out, *args, **kwargs):\r\n        x=x.tolist() \r\n        x= [[round(element) for element in sublist] for sublist in x]\r\n        weight_score= [myfunction(sublist) for sublist in x]  \r\n        resutl=np.array(weight_score)\r\n        out[\"F\"] = np.array(weight_score)\r\n\r\n\r\nproblem = Problem()\r\n\r\nalgorithm = PSO(pop_size=20,adaptive=True)\r\n\r\nres = minimize(problem, algorithm,('n_gen', 20), verbose=True)\r\n\r\nprint(\"Best solution found:\")\r\nprint(\"Variables:\", res.X)\r\nprint(\"Objectives:\", res.F)\r\nprint(\"Constraints:\", res.CV)\r\nprint(\"Optimization result:\", res.algorithm.result)\r\n\r\nprint(\"Execution time: {:.2f} seconds\".format(time.time() - start_time))\r\n\r\n\r\n\r\n\r\n\r\nsys.stdout.seek(0)\r\nOUT = sys.stdout.read()\r\n\r\n\r\n\r\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "f33fc7809e8a4197aff0b2ffdf0b7d93",
+      "Inputs": [
+        {
+          "Id": "d3ea5b6bc39b4e689f62e5f683c94d62",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d816e5c3ba6c4135ac913f33f5426e8f",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "23dcbc503ebe4240825a7bb4c3c3c602",
+      "Inputs": [
+        {
+          "Id": "285cc85c35324f30ad0809434c71cd00",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6810d52319914e7a94a429436b3d5c60",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr  # Required for Python for .NET\r\nimport sys\r\nimport random\r\nimport sys\r\nfrom io import StringIO\r\nsys.stdout = StringIO()\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\nimport time\r\nstart_time = time.time()\r\n# INPUTS\r\n\r\nsections=IN[0]\r\n\r\n\r\n\r\n# Load the RSA API library\r\nclr.AddReference(r'D:\\Programs\\Autodesk\\Revit2024\\Robot Structural Analysis Professional 2024\\Exe\\interop.RobotOM.dll')\r\n\r\n# Import the RSA API\r\nfrom RobotOM import *\r\nfrom System import Object\r\n\r\nRobApp= RobotApplicationClass()\r\n\r\n\r\n# Initialize the Robot application\r\nRobApp.Project.Structure.Nodes.Create(1,0,0,0)\r\nRobApp.Project.Structure.Nodes.Create(3,9.144,0,0)\r\nRobApp.Project.Structure.Nodes.Create(2,0,0,9.144)\r\nRobApp.Project.Structure.Nodes.Create(4,9.14,0,9.144)\r\nRobApp.Project.Structure.Nodes.Create(5,18.288,0,9.144)\r\nRobApp.Project.Structure.Nodes.Create(6,18.288,0,0)\r\n\r\nRobApp.Project.Structure.Bars.Create(1,1,3)\r\nRobApp.Project.Structure.Bars.Create(2,3,4)\r\nRobApp.Project.Structure.Bars.Create(3,4,5)\r\nRobApp.Project.Structure.Bars.Create(4,2,4)\r\n\r\nRobApp.Project.Structure.Bars.Create(5,3,6)\r\nRobApp.Project.Structure.Bars.Create(6,5,6)\r\nRobApp.Project.Structure.Bars.Create(7,1,4)\r\nRobApp.Project.Structure.Bars.Create(8,2,3)\r\nRobApp.Project.Structure.Bars.Create(9,4,6)\r\nRobApp.Project.Structure.Bars.Create(10,3,5)\r\n\t\r\n# Retrieve a node and set its label\r\n# with the 'SetLabel' method.\r\nset_node1 = RobApp.Project.Structure.Nodes.Get(1)\r\nset_node2 = RobApp.Project.Structure.Nodes.Get(2)\r\n\r\n\r\n\r\n# Cast the COM object to the specific interface type\r\nsupport1= IRobotNode(set_node1)\r\nsupport2= IRobotNode(set_node2)\r\n\r\n\r\n# Now you can call the 'SetLabel' method\r\nsupport1.SetLabel(IRobotLabelType.I_LT_SUPPORT, \"Pinned\")\r\nsupport2.SetLabel(IRobotLabelType.I_LT_SUPPORT, \"Pinned\")\r\n\r\n\r\n# Create a new simple case\r\ncase_number = RobApp.Project.Structure.Cases.FreeNumber\r\ncas = RobApp.Project.Structure.Cases.CreateSimple(case_number,\"Case_1\", IRobotCaseNature.I_CN_PERMANENT , IRobotCaseAnalizeType.I_CAT_STATIC_LINEAR)\r\n\r\ncas2 = RobApp.Project.Structure.Cases.CreateSimple(case_number+1,\"Case_2\", IRobotCaseNature.I_CN_PERMANENT , IRobotCaseAnalizeType.I_CAT_STATIC_LINEAR)\r\n\r\n\r\n\r\ncase1=cas.Records.Create(IRobotLoadRecordType.I_LRT_NODE_FORCE)\r\ncase2=cas2.Records.Create(IRobotLoadRecordType.I_LRT_DEAD)\r\n\r\n\r\ncase11=RobotLoadRecord(case1)\r\ncase11.SetValue(IRobotNodeForceRecordValues.I_NFRV_FZ , -444822.16)\r\n\r\nselection = case11.get_Objects()\r\n\r\na= IRobotSelection(selection)\r\na.FromText(\"3 6\") \r\n\r\ncase22=RobotLoadRecord(case2)\r\ncase22.SetValue(IRobotDeadRecordValues.I_DRV_Z,-1)\r\nselection2 = case22.get_Objects()\r\nb= IRobotSelection(selection2)\r\nb.FromText(\"1to10\") \r\n# List of section names\r\n\r\n\r\n# Defining Material\r\n\r\n# Define the material name\r\nmaterial_name = \"10barsteel\"\r\n\r\n\r\na=RobApp.Project.Structure.Labels\r\na=IRobotLabelServer(a)\r\n\r\na=a.Create(IRobotLabelType.I_LT_MATERIAL, material_name)\r\n\r\nmaterial = IRobotLabel(a).Data\r\n\r\nmaterial=IRobotMaterialData(material)\r\n\r\n\r\n# Set the material properties\r\nmaterial.Type = IRobotMaterialType.I_MT_STEEL\r\nmaterial.E = 68947572932  # Young's modulus in Pascals\r\nmaterial.NU = 0.33    # Poisson's ratio\r\nmaterial.RO = 27679       # Unit weight in kg/m^3\r\nmaterial.Kirchoff = material.E / (2 * (1 + material.NU))\r\n\r\ns=RobApp.Project.Structure.Labels.Store(a)\r\n\r\n\r\n\r\ndef myfunction(x):\r\n\r\n    indexes = x\r\n    section_names = [sections[i] for i in indexes]\r\n    \r\n    \r\n    # Assign each section from the list to the corresponding bar\r\n    for i, section_name in enumerate(section_names, start=1):\r\n        # Retrieve the bar using its index\r\n        bar = RobApp.Project.Structure.Bars.Get(i)\r\n        \r\n        # Cast the bar to the IRobotBar type\r\n        bar = IRobotBar(bar)\r\n        \r\n        # Set the section label to the bar\r\n        bar.SetLabel(IRobotLabelType.I_LT_BAR_SECTION, section_name)\r\n        bar.SetLabel(IRobotLabelType.I_LT_MATERIAL ,\"10barsteel\"  )\r\n        bar.SetLabel(IRobotLabelType.I_LT_BAR_RELEASE ,\"Pinned-Pinned\"  )\r\n    \r\n    \r\n    a=RobApp.Project.get_CalcEngine()\r\n    b=IRobotCalcEngine(a)\r\n    b.Calculate()\r\n    \r\n    \r\n    \r\n    #RESULTS\r\n    serv= RobApp.Project.Structure.Results.Nodes.Displacements\r\n    serb= RobApp.Project.Structure.Results.Bars.Stresses\r\n    serr = RobApp.Project.Structure.Results.Nodes.Reactions\r\n    \r\n    \r\n    \r\n    reactions=[]\r\n    for i in range(1, 3):  \r\n        data=serr.Value(i,2)\r\n        \r\n        b=IRobotReactionData(data)\r\n        res_uz = b.FZ\r\n        reactions.append(res_uz)\r\n    \r\n    displacements=[]\r\n    for i in range(1, 7):  \r\n        data=serv.Value(i,1)\r\n        \r\n        b=IRobotDisplacementData(data)\r\n        res_uz = b.UZ\r\n        displacements.append(res_uz)\r\n        \r\n    \r\n    stresses=[]\r\n    for i in range(1, 11):  \r\n        data=serb.Value(i,1,1)\r\n        \r\n        b=IRobotBarStressData(data)\r\n        FXSX  = b.FXSX \r\n        stresses.append(FXSX)\r\n    \r\n    #Convert to mm\r\n    displacements = [num *1000 for num in displacements]\r\n    \r\n    #Convert to N/mm²\r\n    stresses = [num / 1000000 for num in stresses]\r\n    \r\n    #Convert to kg\r\n    reactions = sum(reactions)/9.81\r\n    \r\n    \r\n    Save=RobApp.Kernel\r\n    b=IRobotKernel(Save)\r\n    b.ProjectSaveAs(r'C:\\Users\\ugury\\OneDrive\\Masaüstü\\New folder\\1.rtd')\r\n    \r\n    \r\n    #WEIGHT SCORE EVALUATION\r\n    #Actual stress in the bar\r\n    stress=stresses\r\n    Displacement=displacements\r\n    weight=reactions\r\n    \r\n    #Sets the scoring system for the stress ratios\r\n    TensAllowableStress=172.37\r\n    CompAllowableStress=172.37\r\n    AllowableDisplacement=50.8\r\n    \r\n    violation_coef=10\r\n    \r\n    tensstress=[]\r\n    compstress=[]\r\n    compindex=[]\r\n    for index, value in enumerate(stress):\r\n        if value < 0:\r\n            compstress.append((value))\r\n            compindex.append((index))\r\n        else: \r\n            tensstress.append((value))    \r\n    \r\n    compstress=[abs(value) for value in compstress]\r\n    \r\n    Displacement=[abs(value) for value in Displacement]\r\n    \r\n    \r\n    stress_ratio=[]\r\n    violation = 0  # Initialize violation as a float or integer\r\n    \r\n    for i in tensstress:\r\n        ratio = i / TensAllowableStress\r\n        stress_ratio.append(ratio)\r\n    \r\n    \r\n    for i in compstress:\r\n        ratio = i / CompAllowableStress\r\n        stress_ratio.append(ratio)\r\n    \r\n    \r\n    for d in Displacement:\r\n        ratio = d / AllowableDisplacement\r\n        stress_ratio.append(ratio)\r\n    \r\n    for r in stress_ratio:\r\n        if r - 1 > 0:\r\n            violation += r - 1\r\n\r\n\r\n    return violation, weight\r\n\r\n\r\n\r\nimport numpy as np\r\nfrom pymoo.algorithms.soo.nonconvex.ga import GA\r\nfrom pymoo.core.problem import Problem\r\nfrom pymoo.operators.crossover.sbx import SBX\r\nfrom pymoo.operators.mutation.pm import PM\r\nfrom pymoo.operators.repair.rounding import RoundingRepair\r\nfrom pymoo.operators.sampling.rnd import IntegerRandomSampling\r\nfrom pymoo.optimize import minimize\r\nimport logging\r\nfrom pymoo.constraints.eps import AdaptiveEpsilonConstraintHandling\r\n\r\n\r\nclass Problem(Problem):\r\n    def __init__(self):\r\n        super().__init__(n_var=10, \r\n                         n_obj=1,\r\n                         n_ieq_constr=1, n_eq_constr=0,\r\n                         xl=np.array([0]*10),  \r\n                         xu=np.array([40]*10),\r\n                         vtype=int)\r\n            \r\n\r\n    def _evaluate(self, x, out, *args, **kwargs):\r\n        x=x.tolist() \r\n        weight_score= [myfunction(sublist) for sublist in x]  \r\n        G,F=zip(*weight_score)\r\n        out[\"F\"] = np.array(F)\r\n        out[\"G\"] = np.array(G)\r\n\r\n\r\nproblem = Problem()\r\n\r\nalgorithm = AdaptiveEpsilonConstraintHandling(GA(pop_size=20,\r\n               sampling=IntegerRandomSampling(),\r\n               crossover=SBX(prob=1.0, eta=3.0, vtype=float,repair=RoundingRepair()),\r\n               mutation=PM(prob=1.0, eta=3.0, vtype=float,repair=RoundingRepair()),\r\n               eliminate_duplicates=True),perc_eps_until=0.5)\r\n\r\nres = minimize(problem, algorithm,('n_gen', 20),verbose=True)\r\n\r\nprint(\"Best solution found:\")\r\nprint(\"Variables:\", res.X)\r\nprint(\"Objectives:\", res.F)\r\nprint(\"Constraints:\", res.CV)\r\nprint(\"Optimization result:\", res.algorithm.result)\r\nprint(\"Execution time: {:.2f} seconds\".format(time.time() - start_time))\r\n\r\n\r\n\r\n\r\nsys.stdout.seek(0)\r\nOUT = sys.stdout.read()\r\n\r\n\r\n\r\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "002a8480ec4d4d9095ef6b5fc4fd944f",
+      "Inputs": [
+        {
+          "Id": "4688b661220041edaf71498ba6eb58a5",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6f8c5f68e2f44981b55e31d76b13d816",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr  # Required for Python for .NET\r\nimport sys\r\nimport random\r\nimport sys\r\nfrom io import StringIO\r\nsys.stdout = StringIO()\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\nimport time\r\nstart_time = time.time()\r\n# INPUTS\r\n\r\nsections=IN[0]\r\n\r\n\r\n\r\n# Load the RSA API library\r\nclr.AddReference(r'D:\\Programs\\Autodesk\\Revit2024\\Robot Structural Analysis Professional 2024\\Exe\\interop.RobotOM.dll')\r\n\r\n# Import the RSA API\r\nfrom RobotOM import *\r\nfrom System import Object\r\n\r\nRobApp= RobotApplicationClass()\r\n\r\n\r\n# Initialize the Robot application\r\nRobApp.Project.Structure.Nodes.Create(1,0,0,0)\r\nRobApp.Project.Structure.Nodes.Create(3,9.144,0,0)\r\nRobApp.Project.Structure.Nodes.Create(2,0,0,9.144)\r\nRobApp.Project.Structure.Nodes.Create(4,9.14,0,9.144)\r\nRobApp.Project.Structure.Nodes.Create(5,18.288,0,9.144)\r\nRobApp.Project.Structure.Nodes.Create(6,18.288,0,0)\r\n\r\nRobApp.Project.Structure.Bars.Create(1,1,3)\r\nRobApp.Project.Structure.Bars.Create(2,3,4)\r\nRobApp.Project.Structure.Bars.Create(3,4,5)\r\nRobApp.Project.Structure.Bars.Create(4,2,4)\r\n\r\nRobApp.Project.Structure.Bars.Create(5,3,6)\r\nRobApp.Project.Structure.Bars.Create(6,5,6)\r\nRobApp.Project.Structure.Bars.Create(7,1,4)\r\nRobApp.Project.Structure.Bars.Create(8,2,3)\r\nRobApp.Project.Structure.Bars.Create(9,4,6)\r\nRobApp.Project.Structure.Bars.Create(10,3,5)\r\n\t\r\n# Retrieve a node and set its label\r\n# with the 'SetLabel' method.\r\nset_node1 = RobApp.Project.Structure.Nodes.Get(1)\r\nset_node2 = RobApp.Project.Structure.Nodes.Get(2)\r\n\r\n\r\n\r\n# Cast the COM object to the specific interface type\r\nsupport1= IRobotNode(set_node1)\r\nsupport2= IRobotNode(set_node2)\r\n\r\n\r\n# Now you can call the 'SetLabel' method\r\nsupport1.SetLabel(IRobotLabelType.I_LT_SUPPORT, \"Pinned\")\r\nsupport2.SetLabel(IRobotLabelType.I_LT_SUPPORT, \"Pinned\")\r\n\r\n\r\n# Create a new simple case\r\ncase_number = RobApp.Project.Structure.Cases.FreeNumber\r\ncas = RobApp.Project.Structure.Cases.CreateSimple(case_number,\"Case_1\", IRobotCaseNature.I_CN_PERMANENT , IRobotCaseAnalizeType.I_CAT_STATIC_LINEAR)\r\n\r\ncas2 = RobApp.Project.Structure.Cases.CreateSimple(case_number+1,\"Case_2\", IRobotCaseNature.I_CN_PERMANENT , IRobotCaseAnalizeType.I_CAT_STATIC_LINEAR)\r\n\r\n\r\n\r\ncase1=cas.Records.Create(IRobotLoadRecordType.I_LRT_NODE_FORCE)\r\ncase2=cas2.Records.Create(IRobotLoadRecordType.I_LRT_DEAD)\r\n\r\n\r\ncase11=RobotLoadRecord(case1)\r\ncase11.SetValue(IRobotNodeForceRecordValues.I_NFRV_FZ , -444822.16)\r\n\r\nselection = case11.get_Objects()\r\n\r\na= IRobotSelection(selection)\r\na.FromText(\"3 6\") \r\n\r\ncase22=RobotLoadRecord(case2)\r\ncase22.SetValue(IRobotDeadRecordValues.I_DRV_Z,-1)\r\nselection2 = case22.get_Objects()\r\nb= IRobotSelection(selection2)\r\nb.FromText(\"1to10\") \r\n# List of section names\r\n\r\n\r\n# Defining Material\r\n\r\n# Define the material name\r\nmaterial_name = \"10barsteel\"\r\n\r\n\r\na=RobApp.Project.Structure.Labels\r\na=IRobotLabelServer(a)\r\n\r\na=a.Create(IRobotLabelType.I_LT_MATERIAL, material_name)\r\n\r\nmaterial = IRobotLabel(a).Data\r\n\r\nmaterial=IRobotMaterialData(material)\r\n\r\n\r\n# Set the material properties\r\nmaterial.Type = IRobotMaterialType.I_MT_STEEL\r\nmaterial.E = 68947572932  # Young's modulus in Pascals\r\nmaterial.NU = 0.33    # Poisson's ratio\r\nmaterial.RO = 27679       # Unit weight in kg/m^3\r\nmaterial.Kirchoff = material.E / (2 * (1 + material.NU))\r\n\r\ns=RobApp.Project.Structure.Labels.Store(a)\r\n\r\n\r\n\r\ndef myfunction(x):\r\n\r\n    indexes = x\r\n    section_names = [sections[i] for i in indexes]\r\n    \r\n    \r\n    # Assign each section from the list to the corresponding bar\r\n    for i, section_name in enumerate(section_names, start=1):\r\n        # Retrieve the bar using its index\r\n        bar = RobApp.Project.Structure.Bars.Get(i)\r\n        \r\n        # Cast the bar to the IRobotBar type\r\n        bar = IRobotBar(bar)\r\n        \r\n        # Set the section label to the bar\r\n        bar.SetLabel(IRobotLabelType.I_LT_BAR_SECTION, section_name)\r\n        bar.SetLabel(IRobotLabelType.I_LT_MATERIAL ,\"10barsteel\"  )\r\n        bar.SetLabel(IRobotLabelType.I_LT_BAR_RELEASE ,\"Pinned-Pinned\"  )\r\n    \r\n    \r\n    a=RobApp.Project.get_CalcEngine()\r\n    b=IRobotCalcEngine(a)\r\n    b.Calculate()\r\n    \r\n    \r\n    \r\n    #RESULTS\r\n    serv= RobApp.Project.Structure.Results.Nodes.Displacements\r\n    serb= RobApp.Project.Structure.Results.Bars.Stresses\r\n    serr = RobApp.Project.Structure.Results.Nodes.Reactions\r\n    \r\n    \r\n    \r\n    reactions=[]\r\n    for i in range(1, 3):  \r\n        data=serr.Value(i,2)\r\n        \r\n        b=IRobotReactionData(data)\r\n        res_uz = b.FZ\r\n        reactions.append(res_uz)\r\n    \r\n    displacements=[]\r\n    for i in range(1, 7):  \r\n        data=serv.Value(i,1)\r\n        \r\n        b=IRobotDisplacementData(data)\r\n        res_uz = b.UZ\r\n        displacements.append(res_uz)\r\n        \r\n    \r\n    stresses=[]\r\n    for i in range(1, 11):  \r\n        data=serb.Value(i,1,1)\r\n        \r\n        b=IRobotBarStressData(data)\r\n        FXSX  = b.FXSX \r\n        stresses.append(FXSX)\r\n    \r\n    #Convert to mm\r\n    displacements = [num *1000 for num in displacements]\r\n    \r\n    #Convert to N/mm²\r\n    stresses = [num / 1000000 for num in stresses]\r\n    \r\n    #Convert to kg\r\n    reactions = sum(reactions)/9.81\r\n    \r\n    \r\n    Save=RobApp.Kernel\r\n    b=IRobotKernel(Save)\r\n    b.ProjectSaveAs(r'C:\\Users\\ugury\\OneDrive\\Masaüstü\\New folder\\1.rtd')\r\n    \r\n    \r\n    #WEIGHT SCORE EVALUATION\r\n    #Actual stress in the bar\r\n    stress=stresses\r\n    Displacement=displacements\r\n    weight=reactions\r\n    \r\n    #Sets the scoring system for the stress ratios\r\n    TensAllowableStress=172.37\r\n    CompAllowableStress=172.37\r\n    AllowableDisplacement=50.8\r\n    \r\n    violation_coef=10\r\n    \r\n    tensstress=[]\r\n    compstress=[]\r\n    compindex=[]\r\n    for index, value in enumerate(stress):\r\n        if value < 0:\r\n            compstress.append((value))\r\n            compindex.append((index))\r\n        else: \r\n            tensstress.append((value))    \r\n    \r\n    compstress=[abs(value) for value in compstress]\r\n    \r\n    Displacement=[abs(value) for value in Displacement]\r\n    \r\n    \r\n    stress_ratio=[]\r\n    violation = 0  # Initialize violation as a float or integer\r\n    \r\n    for i in tensstress:\r\n        ratio = i / TensAllowableStress\r\n        stress_ratio.append(ratio)\r\n    \r\n    \r\n    for i in compstress:\r\n        ratio = i / CompAllowableStress\r\n        stress_ratio.append(ratio)\r\n    \r\n    \r\n    for d in Displacement:\r\n        ratio = d / AllowableDisplacement\r\n        stress_ratio.append(ratio)\r\n    \r\n    for r in stress_ratio:\r\n        if r - 1 > 0:\r\n            violation += r - 1\r\n    \r\n    weight_score=weight*(1+(violation*violation_coef))\r\n\r\n    return  violation, weight\r\n\r\n\r\n\r\nimport numpy as np\r\nfrom pymoo.algorithms.soo.nonconvex.ga import GA\r\nfrom pymoo.algorithms.moo.nsga2 import NSGA2\r\nfrom pymoo.core.problem import Problem\r\nfrom pymoo.core.callback import Callback\r\nfrom pymoo.optimize import minimize\r\nimport logging\r\nfrom pymoo.algorithms.soo.nonconvex.pso import PSO\r\nfrom pymoo.operators.repair.rounding import RoundingRepair\r\nfrom pymoo.constraints.eps import AdaptiveEpsilonConstraintHandling\r\nfrom pymoo.operators.sampling.rnd import IntegerRandomSampling\r\n\r\nclass Problem(Problem):\r\n    def __init__(self):\r\n        super().__init__(n_var=10, \r\n                         n_obj=1,\r\n                         n_ieq_constr=1, n_eq_constr=0,\r\n                         xl=np.array([0]*10),  \r\n                         xu=np.array([40]*10),\r\n                         vtype=int)\r\n            \r\n\r\n    def _evaluate(self, x, out, *args, **kwargs):\r\n        x=x.tolist() \r\n        x= [[round(element) for element in sublist] for sublist in x]        \r\n        weight_score= [myfunction(sublist) for sublist in x]  \r\n        G,F=zip(*weight_score)\r\n        out[\"F\"] = np.array(F)\r\n        out[\"G\"] = np.array(G)\r\n\r\n\r\nproblem = Problem()\r\n\r\nalgorithm = PSO(pop_size=20,adaptive=True)\r\n\r\nres = minimize(AdaptiveEpsilonConstraintHandling(problem, perc_eps_until=0.5),\r\n               algorithm,\r\n               ('n_gen', 20),\r\n               verbose=True)\r\n\r\nprint(\"Best solution found:\")\r\nprint(\"Variables:\", res.X)\r\nprint(\"Objectives:\", res.F)\r\nprint(\"Constraints:\", res.CV)\r\nprint(\"Optimization result:\", res.algorithm.result)\r\n\r\nprint(\"Execution time: {:.2f} seconds\".format(time.time() - start_time))\r\n\r\n\r\n\r\n\r\n\r\nsys.stdout.seek(0)\r\nOUT = sys.stdout.read()\r\n\r\n\r\n\r\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "23d5f06920324a13a8a46cb3058d6296",
+      "Inputs": [
+        {
+          "Id": "1ea0c84e420e497484fd4045418a60bf",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "92762c92e1d8426dad0cb80ca53c1da0",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "6497187bb02b492f8d6356cdd654ba7f",
+      "Inputs": [
+        {
+          "Id": "167e56f516b442929d931fcb64fcb882",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3d166afc80504d9ba0ef4929944e64e7",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "8c4b2166bc1d479583466cee437fd918",
+      "Inputs": [
+        {
+          "Id": "4c778bec26d74f3eaa8827b90db61201",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "40e99191603e407dac01f2b2eff64c35",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "d50a1d59894c48888710aba209f36a6e",
+      "End": "ba123edea50b464a971174dd0172e22e",
+      "Id": "7a7231a389d344aea7207ef10b549d07",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d50a1d59894c48888710aba209f36a6e",
+      "End": "4fd27d9fd384481d8b00f1e529e9adcd",
+      "Id": "c69cbad1c8874912bffbf56ae66b052f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d50a1d59894c48888710aba209f36a6e",
+      "End": "d3ea5b6bc39b4e689f62e5f683c94d62",
+      "Id": "e5c4651948fa4d6280a97e98da758bb3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d50a1d59894c48888710aba209f36a6e",
+      "End": "4688b661220041edaf71498ba6eb58a5",
+      "Id": "4ab166e3ff804b25a47548f72087f2be",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d50a1d59894c48888710aba209f36a6e",
+      "End": "1ea0c84e420e497484fd4045418a60bf",
+      "Id": "c64b7be98b4f44e1bbca9998791d88f6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "021f229979d24cb2a92ebe625973c374",
+      "End": "0e03c13947ba4246a9450254cbbcb959",
+      "Id": "77ed1ed450974f419325ff549e79dbf0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d816e5c3ba6c4135ac913f33f5426e8f",
+      "End": "285cc85c35324f30ad0809434c71cd00",
+      "Id": "d4b49296e16f4a47816c28865eed6019",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6f8c5f68e2f44981b55e31d76b13d816",
+      "End": "167e56f516b442929d931fcb64fcb882",
+      "Id": "846d41cfc35846e78487f8d243467adc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "92762c92e1d8426dad0cb80ca53c1da0",
+      "End": "4c778bec26d74f3eaa8827b90db61201",
+      "Id": "ace22491c0084467b720fdfae5036904",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.17",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.17.0.3472",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Name": "Watch",
+        "ShowGeometry": true,
+        "Id": "a9dac4b450c54b65a79b5230fedeffd4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1324.7741949015303,
+        "Y": -484.19935793478464
+      },
+      {
+        "Name": "Code Block",
+        "ShowGeometry": true,
+        "Id": "068615aa298c4f3b838c8b7b3510ac84",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 444.87395369649892,
+        "Y": -278.92331584141812
+      },
+      {
+        "Name": "GA Penalty method as CHT",
+        "ShowGeometry": true,
+        "Id": "5b1958cea8f3481d9ad990d2625b9f2f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": true,
+        "X": 901.29186305442659,
+        "Y": -444.22947111525383
+      },
+      {
+        "Name": "Structure create with imputs",
+        "ShowGeometry": true,
+        "Id": "6ab537603b704461a60c38c5be9e3a3b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 893.43594298127073,
+        "Y": 25.349270983104248
+      },
+      {
+        "Name": "PSO Seperation method as CHT",
+        "ShowGeometry": true,
+        "Id": "f33fc7809e8a4197aff0b2ffdf0b7d93",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": true,
+        "X": 901.29186305442659,
+        "Y": -288.73694192106677
+      },
+      {
+        "Name": "Watch",
+        "ShowGeometry": true,
+        "Id": "23dcbc503ebe4240825a7bb4c3c3c602",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1324.7741949015303,
+        "Y": -287.95302010802618
+      },
+      {
+        "Name": "GA Seperation method as CHT",
+        "ShowGeometry": true,
+        "Id": "002a8480ec4d4d9095ef6b5fc4fd944f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": true,
+        "X": 901.29186305442659,
+        "Y": -599.72200030944089
+      },
+      {
+        "Name": "PSO Penalty method as CHT",
+        "ShowGeometry": true,
+        "Id": "23d5f06920324a13a8a46cb3058d6296",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": true,
+        "X": 901.29186305442659,
+        "Y": -133.24441272687972
+      },
+      {
+        "Name": "Watch",
+        "ShowGeometry": true,
+        "Id": "6497187bb02b492f8d6356cdd654ba7f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1324.7741949015303,
+        "Y": -680.44569576154311
+      },
+      {
+        "Name": "Watch",
+        "ShowGeometry": true,
+        "Id": "8c4b2166bc1d479583466cee437fd918",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1324.7741949015303,
+        "Y": -91.706682281267717
+      }
+    ],
+    "Annotations": [],
+    "X": 312.2136674800621,
+    "Y": 432.24730385306441,
+    "Zoom": 0.4511629553601556
+  }
+}
